@@ -1,35 +1,30 @@
-//Gets a number from math.random and based on the value of that number
-//  stores either rock paper or scissor in the function.
 function getComputerChoice(){
 let num = (Math.random())
-if (num <= .3){
-    return "rock"
-} else if (num >=.4 && num <=.6){
-    return "paper"
-} else {
-    return "scissor"
+    if (num <= .3)
+        {return "rock"}
+    else if (num >=.4 && num <=.6)
+        {return "paper"}
+    else 
+        {return "scissor"}
 }
-}
-//Ask's the user for prompt and stores it on the variable.
-function getHumanChoice(){
-//makes so that the prompt is case insensitive.
-let choice = prompt("Choose between rock, paper or scissor.", "rock").toLowerCase(); 
-if (choice === "rock"){
-    return "rock"
- }else if (choice === "paper"){
-    return "paper"
-} else if (choice === "scissor"){
-    return "scissor"
-}
-}
-//Two constants for the user's choice and the pc choice and two variables for their respective scores.
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-var humanScore = 0;
-var computerScore = 0;
 
-//This function compares getHumanChoice and the getComputerChoice against each other
-// and returns a string to decide a winner.
+function getHumanChoice(){
+let choice = prompt("Choose between rock, paper or scissor.").toLowerCase(); 
+    if (choice === "rock")
+        {return "rock"}
+    else if (choice === "paper")
+        {return "paper"}
+    else if (choice === "scissor")
+        {return "scissor"}
+}
+
+let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+let humanScore = 0;
+let computerScore = 0;
+
+function playGame(){
+
 function playRound(humanChoice, computerChoice){
 
     if (humanChoice === "rock" && computerChoice === "scissor"){
@@ -53,16 +48,30 @@ function playRound(humanChoice, computerChoice){
     } 
 
 }
-//This variable checks for playRound result and increments the scores based on the result.
-var value = playRound(humanSelection, computerSelection);
-if (value === "you win"){
-    humanScore++
-} else if(value === "you loose"){
-    computerScore++
+playRound();
+
+function score(){
+let playRoundResult = playRound(humanSelection, computerSelection);
+    if (playRoundResult === "you win")
+        {humanScore++}
+    else if (playRoundResult === "you loose")
+        {computerScore++}
+    console.log("computer score: " +computerScore + " Your score: " + humanScore)
 }
 
-// fOR testing only.
-console.log(playRound(humanSelection, computerSelection));
-console.log("Your score: " + humanScore, "Computer score: " + computerScore);
+
+for(let i = 0; i < 5; i++){
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    score();
+}
+if (computerScore === humanScore)
+    {console.log("draw")}
+    else if (computerScore > humanScore)
+        {console.log("the machine won")}
+    else {console.log("you win")};
+}
 
 
+playGame();
