@@ -8,20 +8,28 @@ let num = (Math.random())
         {return "scissor"}
 }
 
-function getHumanChoice(){
-let choice = prompt("Choose between rock, paper or scissor.").toLowerCase(); 
-    if (choice === "rock")
-        {return "rock"}
-    else if (choice === "paper")
-        {return "paper"}
-    else if (choice === "scissor")
-        {return "scissor"}
-}
-
 let humanScore = 0;
 let computerScore = 0;
+const computerSelection = getComputerChoice();
 
-function playGame(){
+const rockBtn = document.querySelector("#rockBtn");
+rockBtn.addEventListener("click", (event) => {
+    const humanSelection = event.target.value;
+    playRound(humanSelection, computerSelection);
+})
+
+const scissorBtn = document.querySelector("#scissorBtn");
+scissorBtn.addEventListener("click", (event) => {
+    const humanSelection = event.target.value;
+    playRound(humanSelection, computerSelection);
+})
+
+const paperBtn = document.querySelector("#paperBtn");
+paperBtn.addEventListener("click", (event) => {
+    const humanSelection = event.target.value;
+    playRound(humanSelection, computerSelection);
+})
+
 
 function playRound(humanChoice, computerChoice){
     if (humanChoice === "rock" && computerChoice === "scissor"){
@@ -43,15 +51,18 @@ function playRound(humanChoice, computerChoice){
     } else if (humanChoice === "scissor" && computerChoice === "scissor"){
     return "draw"
     } 
+    console.log("ha");
 }
 
-function score(result){
-    if (result === "you win")
-        {humanScore++}
-    else if (result === "you lose")
-        {computerScore++}
-    console.log("computer score: " + computerScore + " Your score: " + humanScore)
-}
+//function playGame(){
+
+//function score(result){
+//    if (result === "you win")
+//        {humanScore++}
+//    else if (result === "you lose")
+//        {computerScore++}
+//    console.log("computer score: " + computerScore + " Your score: " + humanScore)
+//}
 
 //for(let i = 0; i < 5; i++){
 //    const humanSelection = getHumanChoice();
@@ -60,18 +71,16 @@ function score(result){
 //    score(roundResult);
 //}
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-const roundResult = playRound(humanSelection, computerSelection);
-score(roundResult);
+//const roundResult = playRound(humanSelection, computerSelection);
+//score(roundResult);
 
 
-if (computerScore === humanScore)
-    {console.log("that's a draw")}
-    else if (computerScore > humanScore)
-    {console.log("the machine won")}
-    else {console.log("you win")};
+//if (computerScore === humanScore)
+//    {console.log("that's a draw")}
+//    else if (computerScore > humanScore)
+//    {console.log("the machine won")}
+//    else {console.log("you win")};
 
-}
+//}
 
-playGame();
+//playGame();
