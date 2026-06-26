@@ -5,54 +5,51 @@ let num = (Math.random())
     else if (num > .4 && num <=.6)
         {return "paper"}
     else 
-        {return "scissor"}
+        {return "scissors"}
 }
 
-let humanScore = 0;
-let computerScore = 0;
-const computerSelection = getComputerChoice();
+//let humanScore = 0;
+//let computerScore = 0;
+
+const score = document.querySelector("#score");
+score.textContent = "hello";
 
 const rockBtn = document.querySelector("#rockBtn");
 rockBtn.addEventListener("click", (event) => {
     const humanSelection = event.target.value;
-    playRound(humanSelection, computerSelection);
+    const result = playRound(humanSelection, getComputerChoice());
+    console.log(result);
 })
 
-const scissorBtn = document.querySelector("#scissorBtn");
-scissorBtn.addEventListener("click", (event) => {
+const scissorsBtn = document.querySelector("#scissorsBtn");
+scissorsBtn.addEventListener("click", (event) => {
     const humanSelection = event.target.value;
-    playRound(humanSelection, computerSelection);
+    const result = playRound(humanSelection, getComputerChoice());
+    console.log(result);
+
 })
 
 const paperBtn = document.querySelector("#paperBtn");
 paperBtn.addEventListener("click", (event) => {
     const humanSelection = event.target.value;
-    playRound(humanSelection, computerSelection);
+    const result = playRound(humanSelection, getComputerChoice());
+    console.log(result);
 })
 
-
 function playRound(humanChoice, computerChoice){
-    if (humanChoice === "rock" && computerChoice === "scissor"){
-    return "you win"
-    } else if (humanChoice === "rock" && computerChoice === "paper"){
-    return "you lose"
-    } else if (humanChoice === "rock" && computerChoice === "rock"){
-    return "draw"
-    } else if (humanChoice === "paper" && computerChoice === "rock"){
-    return "you win"
-    } else if (humanChoice === "paper" && computerChoice === "scissor"){
-    return "you lose"
-    } else if (humanChoice === "paper" && computerChoice === "paper"){
-    return "draw"
-    } else if (humanChoice === "scissor" && computerChoice === "rock"){
-    return "you lose"
-    } else if (humanChoice === "scissor" && computerChoice === "paper"){
-    return "you win"
-    } else if (humanChoice === "scissor" && computerChoice === "scissor"){
-    return "draw"
-    } 
-    console.log("ha");
+    if ( humanChoice === computerChoice){
+        return "draw";
+    } else if (
+        (humanChoice === "rock" && computerChoice === "paper") || 
+        (humanChoice === "paper" && computerChoice === "scissors") ||
+        (humanChoice === "scissors" && computerChoice === "rock")
+    ) {
+        return "you lose";
+    } else {
+        return "you win";
+    }
 }
+    
 
 //function playGame(){
 
